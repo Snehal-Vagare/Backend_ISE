@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Admin",
+    "email": "admin@demo.com",
+    "password": "$2a$10$IF4vIS0l12d05R6WVVjVkup2TxDS.qoDrFQJpdtjztXUzhKe1ZkaG",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "name": "Analyst",
+    "email": "user@demo.com",
+    "password": "$2a$10$JhnnEdK0GBhcQyhlQeb92eH9hlZwo0ovDlr6fY4Qi5ZDUEp.dOarG",
+    "role": "user"
+  },
+  {
+    "id": 1791790269733,
+    "name": "sneju",
+    "email": "snehankya2404@gmail.com",
+    "password": "$2a$10$V1X.1AsR12yF0ud0cKGIR.drRairAOPzh50TaZKx81eYYEMSMg4aa",
+    "role": "user"
+  }
+]

@@ -1,0 +1,28 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #f3f4f6; color: #111827; }
+.navbar { display: flex; justify-content: space-between; align-items: center; background: #1e3a8a; color: #fff; padding: 12px 24px; }
+.navbar h2 { margin: 0; font-size: 20px; }
+.nav-links { display: flex; align-items: center; gap: 16px; }
+.nav-links a { color: #fff; text-decoration: none; }
+.badge { background: #3b82f6; padding: 4px 10px; border-radius: 12px; font-size: 13px; }
+.container { max-width: 1000px; margin: 24px auto; padding: 0 16px; }
+.card { background: #fff; border-radius: 10px; padding: 18px; margin-bottom: 18px; box-shadow: 0 1px 4px rgba(0,0,0,.1); }
+.form { max-width: 380px; margin: 40px auto; display: flex; flex-direction: column; gap: 12px; }
+input { padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 14px; }
+button { padding: 10px 16px; background: #2563eb; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; }
+button:hover { background: #1d4ed8; }
+.error { color: #b91c1c; background: #fee2e2; padding: 8px 12px; border-radius: 6px; }
+.success { color: #166534; background: #dcfce7; padding: 8px 12px; border-radius: 6px; }
+.hint { font-size: 12px; color: #6b7280; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 18px; }
+.kpi { display: flex; flex-direction: column; gap: 6px; margin: 0; }
+.kpi span { color: #6b7280; font-size: 13px; }
+.kpi b { font-size: 24px; }
+.green { color: #16a34a; } .red { color: #dc2626; }
+.insights { list-style: none; padding: 0; margin: 0; }
+.insights li { padding: 10px 12px; border-radius: 6px; margin-bottom: 8px; border-left: 4px solid; }
+.insights .positive { background: #f0fdf4; border-color: #16a34a; }
+.insights .warning { background: #fffbeb; border-color: #f59e0b; }
+.insights .info { background: #eff6ff; border-color: #3b82f6; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e5e7eb; }

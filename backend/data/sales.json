@@ -1,0 +1,80 @@
+[
+  {
+    "month": "2025-01",
+    "revenue": 42000,
+    "expenses": 26040,
+    "customers": 300
+  },
+  {
+    "month": "2025-02",
+    "revenue": 45000,
+    "expenses": 27900,
+    "customers": 310
+  },
+  {
+    "month": "2025-03",
+    "revenue": 47000,
+    "expenses": 29140,
+    "customers": 325
+  },
+  {
+    "month": "2025-04",
+    "revenue": 46000,
+    "expenses": 28520,
+    "customers": 330
+  },
+  {
+    "month": "2025-05",
+    "revenue": 50000,
+    "expenses": 31000,
+    "customers": 350
+  },
+  {
+    "month": "2025-06",
+    "revenue": 53000,
+    "expenses": 32860,
+    "customers": 365
+  },
+  {
+    "month": "2025-07",
+    "revenue": 52000,
+    "expenses": 32240,
+    "customers": 370
+  },
+  {
+    "month": "2025-08",
+    "revenue": 58000,
+    "expenses": 35960,
+    "customers": 395
+  },
+  {
+    "month": "2025-09",
+    "revenue": 61000,
+    "expenses": 37820,
+    "customers": 410
+  },
+  {
+    "month": "2025-10",
+    "revenue": 75000,
+    "expenses": 46500,
+    "customers": 450
+  },
+  {
+    "month": "2025-11",
+    "revenue": 66000,
+    "expenses": 40920,
+    "customers": 440
+  },
+  {
+    "month": "2025-12",
+    "revenue": 70000,
+    "expenses": 43400,
+    "customers": 465
+  },
+  {
+    "month": "2026-10",
+    "revenue": 120000,
+    "expenses": 80000,
+    "customers": 19
+  }
+]

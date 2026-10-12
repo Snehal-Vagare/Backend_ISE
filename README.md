@@ -1,100 +1,151 @@
-# AI Business Analytics (Full Stack Project)
+# AI Business Analytics — Full Stack Project
 
-A simple full-stack web app that shows business sales analytics with **AI-based forecasting and insights**,
-protected by **login (authentication)** and **role-based access (authorization)**.
+A full-stack web application that displays business sales analytics, AI-based forecasting, and insights. It includes login authentication and role-based authorization.
 
 ## Tech Stack
-| Part | Technology |
-|------|-----------|
-| Frontend | React (Vite), React Router, Recharts |
+
+| Component | Technology |
+|---|---|
+| Frontend | React, Vite, React Router, Recharts |
 | Backend | Node.js, Express |
-| Auth | JWT (JSON Web Token) + bcrypt password hashing |
-| Storage | JSON files (no database setup needed) |
-| AI | Linear regression + z-score anomaly detection + rule-based insights (plain JavaScript) |
+| Authentication | JWT and bcrypt password hashing |
+| Storage | JSON files |
+| AI | Linear regression, z-score anomaly detection, rule-based insights |
 
-## How to Run (you need Node.js 18+)
+## Prerequisites
 
-**Terminal 1 – Backend**
-```
+- Node.js 18 or later
+- npm
+
+## How to Run
+
+### 1. Start the Backend
+
+Open a terminal in the project root and run:
+
+```bash
 cd backend
 npm install
-npm start          # runs on http://localhost:5000
+npm start
 ```
 
-**Terminal 2 – Frontend**
-```
+Backend URL: `http://localhost:5000`
+
+### 2. Start the Frontend
+
+Open a second terminal in the project root and run:
+
+```bash
 cd frontend
 npm install
-npm run dev        # runs on http://localhost:5173
+npm run dev
 ```
-Open http://localhost:5173
+
+Open the frontend URL shown in the terminal, usually `http://localhost:5173`.
 
 ## Demo Accounts
-| Role | Email | Password |
-|------|-------|----------|
-| Admin | admin@demo.com | admin123 |
-| User  | user@demo.com  | user123 |
 
-You can also register a new account (always gets the `user` role).
+| Role | Email | Password |
+|---|---|---|
+| Admin | admin@demo.com | admin123 |
+| User | user@demo.com | user123 |
+
+These credentials apply only if the demo accounts are configured in your backend. Change demo passwords before deploying the application publicly.
+
+Newly registered accounts receive the user role, if configured that way in the backend.
 
 ## Features
-- Register / Login / Logout
-- Dashboard: KPI cards, revenue trend + 3-month AI forecast, profit chart, AI insights
-- Admin panel (admin only): add monthly sales data, view all users
-- Normal users cannot open `/admin` (frontend) or call admin APIs (backend returns 403)
+
+- User registration, login, and logout
+- Dashboard with KPI cards and sales analytics
+- Revenue trends and three-month forecasting
+- Profit charts and AI-generated insights
+- Admin functionality for managing sales data and viewing users
+- Role-based access control for protected routes and APIs
 
 ## Project Structure
+
+```text
+Backend_ISE/
+├── backend/
+│   ├── server.js
+│   ├── db.js
+│   ├── middleware/
+│   │   └── auth.js
+│   ├── routes/
+│   │   ├── auth.js
+│   │   ├── analytics.js
+│   │   └── users.js
+│   └── utils/
+│       └── ai.js
+├── frontend/
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── AuthContext.jsx
+│       ├── api.js
+│       ├── components/
+│       └── pages/
+├── .gitignore
+└── README.md
 ```
-backend/
-  server.js              – starts Express, connects routes
-  db.js                  – reads/writes JSON files, seeds demo data
-  middleware/auth.js     – authenticate (JWT check) + authorize (role check)
-  routes/auth.js         – register, login, me
-  routes/analytics.js    – summary (all users), add sales (admin)
-  routes/users.js        – list users (admin)
-  utils/ai.js            – the AI logic
-frontend/src/
-  main.jsx, App.jsx      – entry + routes
-  AuthContext.jsx        – stores logged-in user, login(), logout()
-  api.js                 – fetch helper that adds the JWT token
-  components/            – Navbar, ProtectedRoute
-  pages/                 – Login, Register, Dashboard, Admin
-```
+
+The structure above describes the expected organization; actual files may vary.
+
+## Authentication and Authorization
+
+### Authentication
+
+Authentication verifies a user's identity during login. The backend checks credentials and, when configured, issues a JWT token. Protected requests include the token in the `Authorization` header.
+
+### Authorization
+
+Authorization determines which resources a user can access. For example, an admin may have permission to manage sales data, while a regular user has read-only access.
+
+The backend must enforce these permissions. Frontend route protection alone is not sufficient.
+
+## AI Analytics
+
+### Revenue Forecasting
+
+Linear regression estimates a trend from historical revenue data and projects future revenue.
+
+### Anomaly Detection
+
+Z-score analysis identifies revenue values that differ significantly from the historical average.
+
+### Business Insights
+
+Rule-based logic can summarize revenue growth, trends, profit margins, and high-performing months.
+
+These techniques provide explainable analytics. Forecasts and anomaly flags should be evaluated against real data before being used for business decisions.
+
+## Data Flow
+
+React frontend → API request → Express backend → Authentication and authorization middleware, where required → Business logic and data storage → JSON response → Dashboard and charts.
 
 ## API Endpoints
-| Method | URL | Access |
-|--------|-----|--------|
-| POST | /api/auth/register | Public |
-| POST | /api/auth/login | Public |
-| GET | /api/auth/me | Logged in |
-| GET | /api/analytics/summary | Logged in |
-| POST | /api/analytics/sales | Admin only |
-| GET | /api/users | Admin only |
 
-## How to Explain It (key points)
+The exact endpoints depend on the backend implementation. Common examples include:
 
-**1. Authentication (who are you?)**
-- User logs in with email + password. Passwords are stored hashed with bcrypt, never as plain text.
-- On success the server creates a JWT token (valid 2 hours) containing id, name, role.
-- The frontend saves the token in localStorage and sends it in the `Authorization: Bearer <token>` header on every request (`api.js`).
-- `authenticate` middleware verifies the token; invalid/missing token -> 401.
+| Method | Example endpoint | Purpose |
+|---|---|---|
+| POST | `/api/auth/register` | Register a user |
+| POST | `/api/auth/login` | Log in |
+| GET | `/api/analytics/summary` | Retrieve analytics |
+| POST | `/api/analytics/sales` | Add sales data |
+| GET | `/api/users` | Retrieve user records |
 
-**2. Authorization (what are you allowed to do?)**
-- Each user has a role: `admin` or `user`.
-- Backend: `authorize("admin")` middleware returns 403 if the role is wrong. This is the real security.
-- Frontend: `ProtectedRoute` redirects to login (not logged in) or dashboard (wrong role), and the Navbar hides the Admin link. This is for user experience only.
+Verify these routes in the backend before relying on this table.
 
-**3. The AI part**
-- **Forecasting – Linear Regression:** fits a straight line through past monthly revenue (y = slope·x + intercept) and extends it 3 months ahead.
-- **Anomaly detection – z-score:** a month whose revenue is more than 1.5 standard deviations from the mean is flagged as unusual.
-- **Insights:** rules turn numbers into sentences (growth %, trend direction, profit margin, best month).
-- It is explainable AI: no black box and no paid API.
+## Future Improvements
 
-**4. Data flow**
-React page -> `api()` adds token -> Express route -> `authenticate` -> `authorize` -> logic (`ai.js`) -> JSON response -> Recharts renders charts.
+- PostgreSQL or MongoDB integration
+- CSV data import
+- More advanced forecasting models
+- Product and regional analytics
+- Improved token management and deployment security
 
-**5. Business value**
-Helps owners see performance, predict revenue, spot unusual months and make decisions faster.
+## Project Goal
 
-## Possible Future Improvements
-Use MongoDB/PostgreSQL, upload CSV data, use advanced ML models or an LLM API, refresh tokens, product/region analytics.
+The application helps businesses understand sales performance, estimate future revenue, detect unusual trends, and make more informed decisions.
